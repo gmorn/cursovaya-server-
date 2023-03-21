@@ -29,6 +29,7 @@ $routes = [
         ],
         'GET' => [
             'getProd' => 'getProd.php',
+            'comments' => 'getComments.php',
         ],
     ]
 ];
