@@ -35,7 +35,7 @@ $routes = [
 ];
 
 if(isset($routes['methods'][$method][$formData])) {
-    require_once ('routes/'.$routes['methods'][$method][$formData]);
+    require_once ('routes/'.$routes['methods'][$method].'/'.$routes['methods'][$method][$formData]);
 } else {
     echo 'Несуществующий путь';
 }
