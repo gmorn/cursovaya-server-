@@ -28,14 +28,15 @@ $routes = [
             'token' => 'validate_token.php'
         ],
         'GET' => [
-            'getProd' => 'getProd.php',
+            'getprod' => 'getProd.php',
             'comments' => 'getComments.php',
+            'history' => 'getHistory.php',
         ],
     ]
 ];
 
 if(isset($routes['methods'][$method][$formData])) {
-    require_once ('routes/'.$routes['methods'][$method].'/'.$routes['methods'][$method][$formData]);
+    include_once ('routes/'.$method.'/'.$routes['methods'][$method][$formData]);
 } else {
     echo 'Несуществующий путь';
 }
