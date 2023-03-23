@@ -31,6 +31,7 @@ $routes = [
             'getprod' => 'getProd.php',
             'comments' => 'getComments.php',
             'history' => 'getHistory.php',
+            'user' => 'getUser.php',
         ],
     ]
 ];
