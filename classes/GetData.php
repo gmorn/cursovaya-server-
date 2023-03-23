@@ -7,17 +7,24 @@ class GetData {
 
     public $database;
     public $conn;
+    public $param;
+    protected $q;
 
-    public $query;
+    
 
-    public function __construct($a) {
-        $this->query = $a;
+    public function __construct() {
+        $this->q = $_GET['q'];
+        $this->q = explode('/', $this->q);
         
+        if(isset($this->q[1])){
+            $this->param = $this->q[1];
+        }
+    }
+    public function execute_query($query) {
         $this->database = new Database();
         $this->conn = $this->database->getConnection();
-    }
-    public function execute_query() {
-        $result = $this->conn->query($this->query);
+
+        $result = $this->conn->query($query);
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
         $resultArr = [];
         foreach($result as $row){
