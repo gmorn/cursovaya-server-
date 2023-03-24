@@ -9,13 +9,10 @@ class GetData {
     public $conn;
     public $param;
     protected $q;
-
-    
-
     public function __construct() {
         $this->q = $_GET['q'];
         $this->q = explode('/', $this->q);
-        
+
         if(isset($this->q[1])){
             $this->param = $this->q[1];
         }
@@ -29,6 +26,9 @@ class GetData {
         $resultArr = [];
         foreach($result as $row){
             $resultArr[] = $row;
+        }
+        if (count($resultArr) === 0) {
+            return json_encode(false);
         }
         return json_encode($resultArr);
     }

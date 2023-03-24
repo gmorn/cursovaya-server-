@@ -28,6 +28,7 @@ $routes = [
             'token' => 'validate_token.php'
         ],
         'GET' => [
+            'adresses' => 'getAdresses.php',
             'getprod' => 'getProd.php',
             'comments' => 'getComments.php',
             'history' => 'getHistory.php',
