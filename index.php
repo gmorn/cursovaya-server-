@@ -40,5 +40,5 @@ $routes = [
 if(isset($routes['methods'][$method][$formData])) {
     include_once ('routes/'.$method.'/'.$routes['methods'][$method][$formData]);
 } else {
-    echo 'Несуществующий путь';
+    // echo 'Несуществующий путь';
 }
