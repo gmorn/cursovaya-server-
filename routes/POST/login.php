@@ -1,5 +1,6 @@
 <?php
 
+
 // Файлы необходимые для соединения с БД
 include_once "./classes/Database.php";
 include_once "./classes/User.php";
@@ -14,11 +15,12 @@ $user = new User($db);
 // Получаем данные
 $data = json_decode(file_get_contents("php://input"));
 
-var_dump($data -> name);
+// var_dump($data -> name);
  
 // Устанавливаем значения
 $user->name = $data->name;
 $name_exists = $user->nameExists();
+
  
 // Подключение файлов JWT
 include_once './config/core.php';
@@ -41,7 +43,7 @@ if ($name_exists && $user->passworVerify($data->password, $user->password)) {
        "exp" => $exp_time,
        "data" => array(
            "id" => $user->id,
-           "name" => $user->name
+           "name" => $user->name,
        )
     );
  
@@ -52,8 +54,9 @@ if ($name_exists && $user->passworVerify($data->password, $user->password)) {
     $jwt = JWT::encode($token, $key, 'HS256');
     echo json_encode(
         array(
-            "message" => "Успешный вход в систему",
-            "jwt" => $jwt
+            "name" => $user->name,
+            "jwt" => $jwt,
+            "userLogo"=> $user->userLogo,
         )
     );
 }

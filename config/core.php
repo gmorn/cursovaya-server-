@@ -12,4 +12,4 @@ $iss = "http://any-site.org";
 $aud = "http://any-site.com";
 $iat = 1356999524;
 $nbf = 1357000000;
-$exp_time = time() + 3600;
+$exp_time = time() + 60;
