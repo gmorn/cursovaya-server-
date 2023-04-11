@@ -1,7 +1,5 @@
 <?php
 
-use function PHPSTORM_META\type;
-
 class User
 {
     // Подключение к БД таблице "users"
@@ -44,7 +42,7 @@ class User
     
         // Если имя пользователя существует,
         // Присвоим значения свойствам объекта для легкого доступа и использования для php сессий
-        if ($num > 0) {
+        if ($num === 0) {
         // Запрос для добавления нового пользователя в БД
             $query = "INSERT INTO " . $this->table_name . "
                     SET
@@ -68,7 +66,7 @@ class User
                 return true;
             }
         }
-        
+
         return false;
     }
 

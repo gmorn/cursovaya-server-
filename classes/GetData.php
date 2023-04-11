@@ -27,9 +27,10 @@ class GetData {
         foreach($result as $row){
             $resultArr[] = $row;
         }
-        if (count($resultArr) === 0) {
-            return json_encode(false);
+        $resultObj = json_decode(json_encode($resultArr), false);
+        if (count($resultObj) === 0) {
+            http_response_code(401);
         }
-        return json_encode($resultArr);
+        return json_encode($resultObj);
     }
 }

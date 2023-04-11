@@ -54,6 +54,7 @@ if ($name_exists && $user->passworVerify($data->password, $user->password)) {
     $jwt = JWT::encode($token, $key, 'HS256');
     echo json_encode(
         array(
+            'id' => $user->id,
             "name" => $user->name,
             "jwt" => $jwt,
             "userLogo"=> $user->userLogo,

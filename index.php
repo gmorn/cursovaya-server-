@@ -25,7 +25,9 @@ $routes = [
         'POST' => [
             'login' => 'login.php',
             'reg' => 'reg.php',
-            'token' => 'validate_token.php'
+            'token' => 'validate_token.php',
+            'newcomment' => 'newComment.php',
+            'addHistory' => 'addHistory.php',
         ],
         'GET' => [
             'adresses' => 'getAdresses.php',
