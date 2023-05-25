@@ -29,8 +29,10 @@ class GetData {
         }
         $resultObj = json_decode(json_encode($resultArr), false);
         if (count($resultObj) === 0) {
-            http_response_code(401);
+            // http_response_code(401);
+            echo json_encode([]);
+        }else {
+            return json_encode($resultObj);
         }
-        return json_encode($resultObj);
     }
 }

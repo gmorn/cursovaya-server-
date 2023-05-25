@@ -5,12 +5,12 @@ class User
     // Подключение к БД таблице "users"
     private $conn;
     private $table_name = "users";
-
     // Свойства
     public $id;
     public $name;
     public $password;
     public $userLogo;
+    public $role;
 
     // Конструктор класса User
     public function __construct($db)
@@ -21,7 +21,7 @@ class User
     // Метод для создания нового пользователя
     public function create()
     {
-        $query = "SELECT id, name, password, userlogo
+        $query = "SELECT id, name, password, userlogo, role
         FROM " . $this->table_name . "
         WHERE name = ?
         LIMIT 0,1";
@@ -82,7 +82,7 @@ class User
     public function nameExists() {
     
         // Запрос, чтобы проверить, существует ли имя пользователя
-        $query = "SELECT id, name, password, userlogo
+        $query = "SELECT id, name, password, userlogo, role
                 FROM " . $this->table_name . "
                 WHERE name = ?
                 LIMIT 0,1";
@@ -114,6 +114,7 @@ class User
             $this->name = $row['name'];
             $this->password = $row['password'];
             $this->userLogo = $row['userlogo'];
+            $this->role = $row['role'];
     
             // Вернём "true", потому что в базе данных существует имя пользователя
             return true;
@@ -121,6 +122,19 @@ class User
     
         // Вернём "false", если имя пользователя не существует в базе данных
         return false;
+    }
+
+    public function newUserLogo($id, $path)
+    {
+        $query = "UPDATE users SET userlogo = '" . $path . "' WHERE id = " . $id;
+
+$stmt = $this->conn->prepare($query);
+
+// Выполняем запрос
+if ($stmt->execute()) {
+    // код обработки успешного выполнения запроса
+}
+
     }
  
 // Здесь будет метод update()

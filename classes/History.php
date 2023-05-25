@@ -16,12 +16,15 @@ class History
     public function create()
     {
         foreach ($this->prods as $prod) {
-            $product_id = $prod->id;
+        $product_count = $prod->count;
+        $product_id = $prod->id;
+        echo $product_id;
             $query = "INSERT INTO " . $this->table_name . "
             SET
                 user_id = :user_id,
                 product_id = :product_id,
-                date = :date";
+                date = :date,
+                count = :count";
     
             $stmt = $this->conn->prepare($query);
     
@@ -29,16 +32,25 @@ class History
             $this->user_id = htmlspecialchars(strip_tags($this->user_id));
             $product_id = htmlspecialchars(strip_tags($product_id));
             $this->date = htmlspecialchars(strip_tags($this->date));
+            $product_count = htmlspecialchars(strip_tags($product_count));
     
             // Привязываем значения
             $stmt->bindParam(":user_id", $this->user_id);
             $stmt->bindParam(":product_id", $product_id);
             $stmt->bindParam(":date", $this->date);
+            $stmt->bindParam(":count", $product_count);
     
             // Выполняем запрос
             // Если выполнение успешно, то информация о пользователе будет сохранена в базе данных
-            $stmt->execute();
+            try {
+                $stmt->execute();
+                
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
         }
+        return true;
     }
     public function delete()
     {

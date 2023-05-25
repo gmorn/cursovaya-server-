@@ -58,6 +58,7 @@ if ($name_exists && $user->passworVerify($data->password, $user->password)) {
             "name" => $user->name,
             "jwt" => $jwt,
             "userLogo"=> $user->userLogo,
+            "role"=> $user->role,
         )
     );
 }
